@@ -1,0 +1,394 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>SERA accessories</title>
+<link id="fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Jost:wght@400;500&display=swap">
+<style id="css">
+/* Layout: pink brand hero with the logo, then a filterable product grid; owner-only edit tools appear on top for whoever can publish this page. */
+:root{
+  --bg:#FFF7F6; --surface:#FFFFFF; --ink:#3A2A2C; --muted:#7A6465; --line:#F0D5D6;
+  --brand:#F3BBBC; --on-brand:#4A2A2D; --gold:#8A5A2B;
+  --btn-bg:#3A2A2C; --btn-fg:#FFF7F6; --danger:#B3261E; --soft:#FBE6E6;
+  --font-ar:'Cairo','Jost',system-ui,sans-serif; --font-num:'Jost','Cairo',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#231819; --surface:#2E2022; --ink:#F8E9E9; --muted:#C9AEB0; --line:#4A3436; --gold:#E2C27E;
+  --btn-bg:#F3BBBC; --btn-fg:#2A1A1B; --danger:#FF8A80; --soft:#3A2729; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#231819; --surface:#2E2022; --ink:#F8E9E9; --muted:#C9AEB0; --line:#4A3436; --gold:#E2C27E;
+  --btn-bg:#F3BBBC; --btn-fg:#2A1A1B; --danger:#FF8A80; --soft:#3A2729; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-ar);font-size:16px;line-height:1.6}
+*{box-sizing:border-box}
+.shell{min-height:100vh;display:flex;flex-direction:column}
+.wrap{width:100%;max-width:1080px;margin-inline:auto;padding-inline:16px}
+.hero{background:var(--brand);color:var(--on-brand);text-align:center;padding-block:28px 36px}
+.hero svg{display:block;width:min(78vw,360px);height:auto;margin:0 auto}
+.hero p{margin:6px auto 20px;font-size:1.125rem;font-weight:600;max-width:30ch;text-wrap:balance}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 22px;border:0;border-radius:8px;background:var(--btn-bg);color:var(--btn-fg);font:600 1rem var(--font-ar);text-decoration:none;cursor:pointer}
+.btn.off{background:var(--line);color:var(--muted);cursor:default}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.small{min-height:36px;padding:4px 14px;font-size:.875rem}
+.btn.danger{background:transparent;color:var(--danger);box-shadow:inset 0 0 0 1.5px var(--danger)}
+.btn:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.section{padding-block:28px 12px}
+.section h2{margin:0 0 14px;font-size:1.5rem;font-weight:700}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{min-height:40px;padding:4px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:600 .9375rem var(--font-ar);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,168px),1fr));gap:20px 16px;padding:0;margin:0;list-style:none}
+.card{display:flex;flex-direction:column;gap:10px;min-width:0}
+.media{position:relative;aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:var(--soft)}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{width:100%;height:100%;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,#F3BBBC,#E9A2A7);font:500 1.5rem var(--font-num);letter-spacing:.3em}
+.tag{position:absolute;top:8px;inset-inline-start:8px;background:var(--surface);color:var(--ink);font-size:.75rem;font-weight:600;padding:2px 10px;border-radius:999px}
+.tag.sold{background:var(--ink);color:var(--bg)}
+.name{margin:0;font-size:1rem;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.price{margin:0;font:500 1.0625rem var(--font-num);color:var(--gold);font-variant-numeric:tabular-nums}
+.price span{font-family:var(--font-ar);font-size:.875rem}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.empty{padding:36px 16px;text-align:center;color:var(--muted);background:var(--soft);border-radius:10px}
+footer{margin-top:auto;padding-block:28px 96px;color:var(--muted);font-size:.9375rem}
+footer .wrap{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center}
+footer a{color:var(--ink)}
+.num{direction:ltr;unicode-bidi:isolate;font-family:var(--font-num);user-select:all}
+.editbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--ink);color:var(--bg);padding-block:10px}
+.editbar .wrap{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.editbar .btn{background:var(--bg);color:var(--ink)}
+.editbar .btn.primary{background:var(--brand);color:#3A2A2C}
+.editbar .btn[disabled]{opacity:.45;cursor:default}
+.editbar .status{flex:1 1 140px;font-size:.875rem;min-width:0}
+.fab{position:fixed;inset-inline-end:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;box-shadow:0 6px 18px rgba(58,42,44,.28)}
+.notice{background:var(--soft);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:.9375rem}
+.overlay{position:fixed;inset:0;z-index:40;background:rgba(30,18,19,.55);display:flex;align-items:flex-end;justify-content:center}
+.sheet{width:min(100%,520px);max-height:92vh;overflow:auto;background:var(--surface);color:var(--ink);border-radius:16px 16px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px))}
+@media (min-width:600px){.overlay{align-items:center}.sheet{border-radius:16px}}
+.sheet h3{margin:0 0 14px;font-size:1.25rem}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.field label{font-weight:600;font-size:.9375rem}
+.field small{color:var(--muted)}
+input[type=text],input[type=number],input[type=tel],input[type=file]{width:100%;min-height:44px;padding:8px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:400 1rem var(--font-ar)}
+.check{display:flex;gap:10px;align-items:center;margin-bottom:14px;min-height:44px}
+.check input{width:22px;height:22px;accent-color:var(--gold)}
+.preview{width:120px;aspect-ratio:4/5;object-fit:cover;border-radius:8px;display:block;margin-top:6px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.err{color:var(--danger);font-size:.875rem;min-height:1.2em;margin:0 0 10px}
+@media (prefers-reduced-motion:no-preference){.btn,.chip{transition:background-color .15s,color .15s}}
+</style>
+<div id="app" dir="rtl" lang="ar"></div>
+<template id="logo-tpl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="180 280 1240 1010" role="img" aria-label="SERA accessories">
+
+<defs>
+<linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="230" y1="0" x2="1370" y2="0">
+<stop offset="0" stop-color="#6e4526"/><stop offset=".18" stop-color="#9a6b3f"/>
+<stop offset=".34" stop-color="#e2c27e"/><stop offset=".48" stop-color="#7d5230"/>
+<stop offset=".62" stop-color="#c79a5b"/><stop offset=".76" stop-color="#f4e6bd"/>
+<stop offset=".9" stop-color="#a97b4a"/><stop offset="1" stop-color="#5e3a20"/>
+</linearGradient>
+<filter id="sh" x="-10%" y="-10%" width="120%" height="125%">
+<feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#b8686f" flood-opacity=".35"/>
+</filter>
+</defs>
+
+<g transform="translate(0 70)"><path d="M801.0 330.0 L800.8 330.2 L800.2 330.2 L799.2 331.2 L799.0 331.8 L799.0 1016.8 L799.5 1017.5 L800.0 1017.5 L800.2 1017.8 L859.5 1017.8 L859.8 1017.5 L860.2 1017.5 L860.8 1016.8 L860.8 688.8 L861.8 687.8 L879.0 687.8 L882.0 687.9 L885.8 688.6 L889.2 688.9 L891.2 689.4 L895.0 690.6 L897.2 691.6 L899.5 692.9 L901.4 694.3 L902.8 695.8 L904.4 698.0 L906.0 701.0 L907.3 703.8 L907.8 705.8 L908.2 710.0 L908.9 714.2 L909.0 1016.8 L909.5 1017.5 L910.0 1017.5 L910.2 1017.8 L968.5 1017.8 L968.8 1017.5 L969.2 1017.5 L969.8 1017.0 L970.8 1015.0 L970.7 725.2 L970.6 722.0 L969.8 717.0 L969.6 706.0 L969.2 704.0 L966.6 696.0 L965.4 693.2 L963.9 690.8 L962.0 688.0 L960.1 685.6 L958.4 683.8 L953.5 679.8 L945.0 674.2 L938.8 671.6 L930.8 668.5 L930.5 668.2 L930.0 668.2 L929.8 668.0 L927.8 668.0 L926.2 667.2 L925.5 666.5 L925.5 665.8 L926.2 665.0 L926.8 664.8 L928.8 664.8 L929.0 664.5 L929.5 664.5 L930.2 664.0 L938.2 661.4 L945.2 658.5 L952.0 654.5 L958.2 649.6 L960.2 647.5 L963.0 643.8 L964.4 641.5 L966.1 638.2 L967.6 634.5 L969.6 626.2 L969.8 618.5 L970.6 613.8 L970.7 610.8 L970.7 392.2 L970.7 389.2 L970.0 385.0 L969.7 376.2 L968.7 371.5 L966.9 365.0 L964.9 360.2 L963.4 357.5 L961.7 355.0 L960.1 353.0 L958.5 351.4 L951.8 346.0 L949.2 344.3 L946.8 343.0 L942.5 340.9 L936.5 338.5 L932.0 336.9 L928.8 336.0 L920.8 334.3 L908.0 332.2 L903.8 331.9 L898.8 331.1 L887.5 330.9 L881.5 330.0Z M879.5 371.8 L888.5 373.0 L893.0 374.1 L898.2 376.3 L899.7 377.2 L901.4 378.6 L902.9 380.1 L904.4 382.0 L905.6 384.3 L906.6 386.5 L907.7 390.0 L908.2 394.2 L908.9 398.0 L909.0 402.5 L908.9 621.0 L907.6 628.5 L906.7 631.0 L905.7 633.2 L903.9 636.0 L902.1 638.1 L900.0 639.9 L897.0 641.8 L895.0 642.7 L892.8 643.5 L886.0 644.9 L875.2 645.0 L869.2 645.9 L862.8 646.0 L862.2 645.8 L861.0 644.5 L860.8 644.0 L860.8 373.8 L861.0 373.2 L862.2 372.0 L862.8 371.8Z M478.0 237.0 L475.8 237.2 L471.5 237.9 L465.5 238.2 L459.0 239.3 L448.8 241.4 L439.0 245.0 L426.5 251.3 L423.5 253.3 L419.0 256.8 L412.8 262.0 L410.6 264.3 L406.8 269.2 L403.0 275.0 L400.5 279.5 L397.7 285.8 L395.3 294.0 L394.2 299.5 L393.2 305.5 L393.0 307.5 L393.0 452.8 L393.9 458.0 L394.1 463.8 L394.8 467.8 L395.1 472.8 L395.8 476.5 L396.2 480.2 L397.3 487.0 L398.7 492.8 L400.4 501.2 L406.7 524.5 L412.7 540.0 L416.6 548.5 L420.2 555.8 L425.6 565.8 L433.3 577.8 L444.1 593.0 L451.5 604.0 L462.4 619.5 L465.0 624.0 L470.6 632.5 L473.5 637.2 L481.8 651.5 L490.2 668.5 L497.4 688.0 L501.4 700.5 L503.6 708.2 L505.4 716.2 L506.6 720.5 L507.8 726.2 L508.3 729.8 L510.8 742.2 L511.8 748.8 L512.2 752.2 L512.8 755.8 L513.2 760.2 L513.8 763.8 L514.1 769.5 L514.9 774.5 L515.1 780.5 L515.9 785.8 L516.1 798.2 L517.0 804.2 L517.0 954.8 L516.9 958.8 L515.7 966.0 L514.2 970.8 L512.0 975.8 L509.6 979.7 L506.6 983.3 L502.5 986.5 L500.5 987.6 L498.2 988.7 L496.0 989.4 L494.0 989.8 L487.5 990.2 L477.0 989.9 L475.2 989.6 L473.2 988.9 L469.2 987.1 L466.8 985.4 L463.6 982.9 L462.2 981.4 L460.0 978.5 L458.1 975.2 L456.0 970.0 L455.1 967.0 L453.9 961.2 L453.8 957.8 L453.8 690.0 L453.2 689.2 L452.8 689.2 L452.5 689.0 L394.2 689.0 L394.0 689.2 L393.5 689.2 L393.0 690.0 L393.0 958.8 L393.2 961.2 L393.9 965.0 L394.2 969.2 L395.4 975.5 L396.3 978.2 L400.3 988.2 L401.9 991.5 L406.4 999.2 L412.5 1006.4 L417.6 1011.1 L425.8 1017.6 L433.5 1022.4 L437.0 1024.2 L442.8 1026.5 L447.0 1027.9 L456.2 1030.3 L464.0 1031.6 L471.2 1031.8 L476.8 1032.7 L493.8 1032.7 L496.0 1032.6 L500.2 1031.8 L505.8 1031.6 L509.5 1030.9 L513.2 1030.5 L522.5 1028.2 L529.0 1026.1 L534.2 1023.9 L540.5 1020.3 L545.5 1016.9 L550.5 1013.2 L556.8 1007.8 L558.9 1005.6 L564.1 999.5 L568.9 991.5 L570.5 988.2 L573.5 981.0 L575.2 976.0 L576.6 969.0 L576.8 964.2 L577.6 959.8 L577.8 954.2 L578.6 950.0 L578.7 947.5 L578.7 765.0 L578.6 762.0 L577.8 756.8 L577.7 744.0 L576.9 738.8 L576.7 732.5 L575.9 728.0 L575.6 723.5 L573.5 711.0 L571.3 701.2 L568.2 690.0 L565.3 680.5 L558.8 663.0 L555.8 657.0 L553.9 652.5 L549.2 643.2 L545.7 637.0 L542.2 631.5 L539.1 626.0 L525.6 605.8 L514.2 590.5 L510.4 585.8 L494.4 561.8 L490.0 553.5 L484.6 544.5 L482.0 539.2 L479.8 534.0 L476.6 527.5 L472.3 516.8 L468.2 505.5 L464.3 493.0 L463.4 488.5 L462.0 484.0 L460.2 476.5 L458.0 465.5 L457.6 461.5 L456.9 457.8 L456.6 453.8 L455.9 449.8 L455.6 444.8 L454.9 440.8 L454.7 433.5 L453.8 427.8 L453.8 310.2 L453.9 306.0 L454.8 302.2 L456.7 296.5 L457.7 294.0 L459.8 290.5 L462.9 287.0 L464.8 285.4 L466.8 284.0 L472.0 281.3 L475.8 280.1 L482.2 278.8 L486.5 278.8 L490.5 279.6 L495.2 280.1 L499.2 281.5 L504.0 284.0 L505.7 285.2 L507.7 287.0 L509.9 289.3 L511.3 291.0 L512.4 292.8 L513.3 294.8 L515.2 300.0 L515.8 302.2 L516.8 308.2 L517.0 311.5 L517.0 514.0 L517.2 514.5 L518.2 515.5 L518.8 515.5 L519.0 515.8 L575.8 515.8 L576.0 515.5 L576.5 515.5 L578.0 514.8 L578.8 513.8 L578.7 315.0 L578.6 312.5 L577.9 308.8 L577.6 304.8 L576.9 301.2 L576.3 296.2 L574.2 288.2 L570.8 280.0 L565.6 271.2 L560.6 264.8 L558.7 262.8 L551.2 256.4 L544.8 252.0 L539.2 248.8 L534.2 246.2 L529.8 244.2 L520.8 241.2 L512.0 239.3 L505.2 238.2 L499.0 237.9 L494.5 237.1Z M627 330H751V371H688V631H751V673H688V976H751V1018H627Z M1081 330H1143L1205 1018H1143L1134 868H1089L1080 1018H1019ZM1112 460L1131 823H1091Z" fill="#fff" fill-rule="evenodd" filter="url(#sh)"/>
+<g fill="url(#gold)"><g transform="translate(230 1185) scale(0.7713)"><path d="M26.136 -49.279999999999994Q31.855999999999998 -49.279999999999994 36.123999999999995 -47.035999999999994Q40.391999999999996 -44.791999999999994 42.943999999999996 -41.448V-48.488H53.064V0.0H42.943999999999996V-7.215999999999999Q40.391999999999996 -3.784 35.992 -1.496Q31.592 0.7919999999999999 25.959999999999997 0.7919999999999999Q19.712 0.7919999999999999 14.52 -2.42Q9.328 -5.632 6.292 -11.396Q3.256 -17.16 3.256 -24.464Q3.256 -31.767999999999997 6.292 -37.4Q9.328 -43.032 14.563999999999998 -46.15599999999999Q19.799999999999997 -49.279999999999994 26.136 -49.279999999999994ZM28.247999999999998 -40.568Q24.375999999999998 -40.568 21.031999999999996 -38.676Q17.688 -36.784 15.62 -33.132Q13.552 -29.479999999999997 13.552 -24.464Q13.552 -19.448 15.62 -15.664Q17.688 -11.879999999999999 21.076 -9.899999999999999Q24.464 -7.92 28.247999999999998 -7.92Q32.12 -7.92 35.464 -9.856Q38.808 -11.792 40.876 -15.532Q42.943999999999996 -19.272 42.943999999999996 -24.288Q42.943999999999996 -29.304 40.876 -33.0Q38.808 -36.696 35.464 -38.632Q32.12 -40.568 28.247999999999998 -40.568Z"/><path d="M181.67999999999998 -49.279999999999994Q190.48 -49.279999999999994 196.24399999999997 -45.099999999999994Q202.00799999999998 -40.919999999999995 204.03199999999998 -33.175999999999995H193.20799999999997Q191.88799999999998 -36.784 188.98399999999998 -38.808Q186.07999999999998 -40.832 181.67999999999998 -40.832Q175.51999999999998 -40.832 171.868 -36.476Q168.21599999999998 -32.12 168.21599999999998 -24.288Q168.21599999999998 -16.456 171.868 -12.056Q175.51999999999998 -7.656 181.67999999999998 -7.656Q190.392 -7.656 193.20799999999997 -15.312H204.03199999999998Q201.92 -7.92 196.11199999999997 -3.564Q190.30399999999997 0.7919999999999999 181.67999999999998 0.7919999999999999Q174.72799999999998 0.7919999999999999 169.35999999999999 -2.332Q163.992 -5.4559999999999995 160.956 -11.132Q157.92 -16.808 157.92 -24.288Q157.92 -31.767999999999997 160.956 -37.443999999999996Q163.992 -43.12 169.35999999999999 -46.199999999999996Q174.72799999999998 -49.279999999999994 181.67999999999998 -49.279999999999994Z"/><path d="M329.48 -49.279999999999994Q338.28 -49.279999999999994 344.044 -45.099999999999994Q349.808 -40.919999999999995 351.832 -33.175999999999995H341.008Q339.688 -36.784 336.784 -38.808Q333.88 -40.832 329.48 -40.832Q323.32 -40.832 319.668 -36.476Q316.016 -32.12 316.016 -24.288Q316.016 -16.456 319.668 -12.056Q323.32 -7.656 329.48 -7.656Q338.192 -7.656 341.008 -15.312H351.832Q349.72 -7.92 343.91200000000003 -3.564Q338.104 0.7919999999999999 329.48 0.7919999999999999Q322.528 0.7919999999999999 317.15999999999997 -2.332Q311.792 -5.4559999999999995 308.756 -11.132Q305.71999999999997 -16.808 305.71999999999997 -24.288Q305.71999999999997 -31.767999999999997 308.756 -37.443999999999996Q311.792 -43.12 317.15999999999997 -46.199999999999996Q322.528 -49.279999999999994 329.48 -49.279999999999994Z"/><path d="M500.952 -20.503999999999998H463.904Q464.344 -14.696 468.216 -11.176Q472.088 -7.656 477.72 -7.656Q485.81600000000003 -7.656 489.16 -14.431999999999999H499.98400000000004Q497.784 -7.744 492.02 -3.476Q486.25600000000003 0.7919999999999999 477.72 0.7919999999999999Q470.76800000000003 0.7919999999999999 465.26800000000003 -2.332Q459.76800000000003 -5.4559999999999995 456.644 -11.132Q453.52 -16.808 453.52 -24.288Q453.52 -31.767999999999997 456.556 -37.443999999999996Q459.592 -43.12 465.092 -46.199999999999996Q470.592 -49.279999999999994 477.72 -49.279999999999994Q484.584 -49.279999999999994 489.952 -46.288Q495.32 -43.296 498.312 -37.884Q501.30400000000003 -32.472 501.30400000000003 -25.432Q501.30400000000003 -22.703999999999997 500.952 -20.503999999999998ZM490.832 -28.599999999999998Q490.744 -34.144 486.872 -37.488Q483.0 -40.832 477.28000000000003 -40.832Q472.088 -40.832 468.39200000000005 -37.532Q464.696 -34.232 463.992 -28.599999999999998Z"/><path d="M603.52 -14.872H613.904Q614.1679999999999 -11.792 616.8519999999999 -9.724Q619.536 -7.656 623.584 -7.656Q627.808 -7.656 630.14 -9.283999999999999Q632.472 -10.911999999999999 632.472 -13.463999999999999Q632.472 -16.192 629.876 -17.512Q627.28 -18.831999999999997 621.6479999999999 -20.416Q616.1919999999999 -21.912 612.76 -23.32Q609.328 -24.727999999999998 606.8199999999999 -27.631999999999998Q604.3119999999999 -30.535999999999998 604.3119999999999 -35.288Q604.3119999999999 -39.16 606.5999999999999 -42.372Q608.8879999999999 -45.583999999999996 613.156 -47.431999999999995Q617.424 -49.279999999999994 622.968 -49.279999999999994Q631.2399999999999 -49.279999999999994 636.3 -45.099999999999994Q641.3599999999999 -40.919999999999995 641.712 -33.704H631.68Q631.4159999999999 -36.96 629.04 -38.896Q626.664 -40.832 622.616 -40.832Q618.656 -40.832 616.5439999999999 -39.336Q614.4319999999999 -37.839999999999996 614.4319999999999 -35.376Q614.4319999999999 -33.44 615.8399999999999 -32.12Q617.2479999999999 -30.799999999999997 619.2719999999999 -30.052Q621.2959999999999 -29.304 625.256 -28.159999999999997Q630.536 -26.752 633.924 -25.299999999999997Q637.3119999999999 -23.848 639.7759999999998 -21.031999999999996Q642.2399999999999 -18.215999999999998 642.328 -13.552Q642.328 -9.415999999999999 640.04 -6.159999999999999Q637.752 -2.904 633.5719999999999 -1.056Q629.3919999999999 0.7919999999999999 623.76 0.7919999999999999Q618.04 0.7919999999999999 613.508 -1.276Q608.976 -3.344 606.336 -6.9079999999999995Q603.6959999999999 -10.472 603.52 -14.872Z"/><path d="M745.512 -14.872H755.896Q756.1599999999999 -11.792 758.8439999999998 -9.724Q761.5279999999999 -7.656 765.5759999999999 -7.656Q769.8 -7.656 772.132 -9.283999999999999Q774.4639999999999 -10.911999999999999 774.4639999999999 -13.463999999999999Q774.4639999999999 -16.192 771.8679999999999 -17.512Q769.2719999999999 -18.831999999999997 763.6399999999999 -20.416Q758.1839999999999 -21.912 754.752 -23.32Q751.3199999999999 -24.727999999999998 748.8119999999999 -27.631999999999998Q746.3039999999999 -30.535999999999998 746.3039999999999 -35.288Q746.3039999999999 -39.16 748.5919999999999 -42.372Q750.8799999999999 -45.583999999999996 755.1479999999999 -47.431999999999995Q759.4159999999999 -49.279999999999994 764.9599999999999 -49.279999999999994Q773.2319999999999 -49.279999999999994 778.2919999999999 -45.099999999999994Q783.3519999999999 -40.919999999999995 783.704 -33.704H773.6719999999999Q773.4079999999999 -36.96 771.0319999999999 -38.896Q768.656 -40.832 764.608 -40.832Q760.6479999999999 -40.832 758.5359999999998 -39.336Q756.4239999999999 -37.839999999999996 756.4239999999999 -35.376Q756.4239999999999 -33.44 757.8319999999999 -32.12Q759.2399999999999 -30.799999999999997 761.2639999999999 -30.052Q763.2879999999999 -29.304 767.2479999999999 -28.159999999999997Q772.5279999999999 -26.752 775.9159999999999 -25.299999999999997Q779.3039999999999 -23.848 781.7679999999998 -21.031999999999996Q784.2319999999999 -18.215999999999998 784.3199999999999 -13.552Q784.3199999999999 -9.415999999999999 782.0319999999999 -6.159999999999999Q779.7439999999999 -2.904 775.5639999999999 -1.056Q771.3839999999999 0.7919999999999999 765.752 0.7919999999999999Q760.0319999999999 0.7919999999999999 755.5 -1.276Q750.968 -3.344 748.328 -6.9079999999999995Q745.6879999999999 -10.472 745.512 -14.872Z"/><path d="M886.8879999999999 -24.288Q886.8879999999999 -31.68 890.1439999999999 -37.4Q893.3999999999999 -43.12 899.0319999999999 -46.199999999999996Q904.6639999999999 -49.279999999999994 911.6159999999999 -49.279999999999994Q918.5679999999999 -49.279999999999994 924.1999999999998 -46.199999999999996Q929.8319999999999 -43.12 933.0879999999999 -37.4Q936.3439999999998 -31.68 936.3439999999998 -24.288Q936.3439999999998 -16.896 932.9999999999998 -11.176Q929.6559999999998 -5.4559999999999995 923.8919999999998 -2.332Q918.1279999999998 0.7919999999999999 911.1759999999998 0.7919999999999999Q904.3119999999999 0.7919999999999999 898.7679999999998 -2.332Q893.2239999999998 -5.4559999999999995 890.0559999999998 -11.132Q886.8879999999999 -16.808 886.8879999999999 -24.288ZM926.0479999999999 -24.288Q926.0479999999999 -29.567999999999998 924.0239999999999 -33.22Q921.9999999999999 -36.872 918.656 -38.72Q915.3119999999999 -40.568 911.4399999999998 -40.568Q907.5679999999999 -40.568 904.2679999999998 -38.72Q900.9679999999998 -36.872 899.0319999999999 -33.22Q897.0959999999999 -29.567999999999998 897.0959999999999 -24.288Q897.0959999999999 -16.456 901.0999999999999 -12.187999999999999Q905.1039999999998 -7.92 911.1759999999998 -7.92Q915.0479999999999 -7.92 918.4359999999999 -9.768Q921.8239999999998 -11.616 923.9359999999999 -15.312Q926.0479999999999 -19.008 926.0479999999999 -24.288Z"/><path d="M1065.84 -49.279999999999994V-38.896H1063.2879999999998Q1057.3919999999998 -38.896 1054.3559999999998 -35.903999999999996Q1051.32 -32.912 1051.32 -25.52V0.0H1041.2879999999998V-48.488H1051.32V-41.448Q1053.52 -45.144 1057.172 -47.211999999999996Q1060.8239999999998 -49.279999999999994 1065.84 -49.279999999999994Z"/><path d="M1168.7599999999998 -61.336Q1168.7599999999998 -64.064 1170.6079999999997 -65.91199999999999Q1172.4559999999997 -67.75999999999999 1175.1839999999997 -67.75999999999999Q1177.8239999999998 -67.75999999999999 1179.6719999999998 -65.91199999999999Q1181.5199999999998 -64.064 1181.5199999999998 -61.336Q1181.5199999999998 -58.608 1179.6719999999998 -56.76Q1177.8239999999998 -54.912 1175.1839999999997 -54.912Q1172.4559999999997 -54.912 1170.6079999999997 -56.76Q1168.7599999999998 -58.608 1168.7599999999998 -61.336ZM1180.1119999999999 -48.488V0.0H1170.0799999999997V-48.488Z"/><path d="M1332.3999999999999 -20.503999999999998H1295.3519999999999Q1295.7919999999997 -14.696 1299.6639999999998 -11.176Q1303.5359999999998 -7.656 1309.1679999999997 -7.656Q1317.2639999999997 -7.656 1320.6079999999997 -14.431999999999999H1331.4319999999998Q1329.2319999999997 -7.744 1323.4679999999998 -3.476Q1317.7039999999997 0.7919999999999999 1309.1679999999997 0.7919999999999999Q1302.2159999999997 0.7919999999999999 1296.7159999999997 -2.332Q1291.2159999999997 -5.4559999999999995 1288.0919999999996 -11.132Q1284.9679999999998 -16.808 1284.9679999999998 -24.288Q1284.9679999999998 -31.767999999999997 1288.004 -37.443999999999996Q1291.0399999999997 -43.12 1296.5399999999997 -46.199999999999996Q1302.0399999999997 -49.279999999999994 1309.1679999999997 -49.279999999999994Q1316.0319999999997 -49.279999999999994 1321.3999999999996 -46.288Q1326.7679999999998 -43.296 1329.7599999999998 -37.884Q1332.7519999999997 -32.472 1332.7519999999997 -25.432Q1332.7519999999997 -22.703999999999997 1332.3999999999999 -20.503999999999998ZM1322.2799999999997 -28.599999999999998Q1322.1919999999998 -34.144 1318.3199999999997 -37.488Q1314.4479999999999 -40.832 1308.7279999999998 -40.832Q1303.5359999999998 -40.832 1299.8399999999997 -37.532Q1296.1439999999998 -34.232 1295.4399999999998 -28.599999999999998Z"/><path d="M1434.9679999999998 -14.872H1445.3519999999999Q1445.6159999999998 -11.792 1448.2999999999997 -9.724Q1450.984 -7.656 1455.0319999999997 -7.656Q1459.2559999999999 -7.656 1461.5879999999997 -9.283999999999999Q1463.9199999999998 -10.911999999999999 1463.9199999999998 -13.463999999999999Q1463.9199999999998 -16.192 1461.3239999999998 -17.512Q1458.7279999999998 -18.831999999999997 1453.0959999999998 -20.416Q1447.6399999999999 -21.912 1444.2079999999999 -23.32Q1440.7759999999998 -24.727999999999998 1438.2679999999998 -27.631999999999998Q1435.7599999999998 -30.535999999999998 1435.7599999999998 -35.288Q1435.7599999999998 -39.16 1438.0479999999998 -42.372Q1440.3359999999998 -45.583999999999996 1444.6039999999998 -47.431999999999995Q1448.8719999999998 -49.279999999999994 1454.4159999999997 -49.279999999999994Q1462.6879999999999 -49.279999999999994 1467.7479999999998 -45.099999999999994Q1472.8079999999998 -40.919999999999995 1473.1599999999999 -33.704H1463.1279999999997Q1462.8639999999998 -36.96 1460.4879999999998 -38.896Q1458.1119999999999 -40.832 1454.0639999999999 -40.832Q1450.1039999999998 -40.832 1447.9919999999997 -39.336Q1445.8799999999999 -37.839999999999996 1445.8799999999999 -35.376Q1445.8799999999999 -33.44 1447.288 -32.12Q1448.696 -30.799999999999997 1450.7199999999998 -30.052Q1452.744 -29.304 1456.7039999999997 -28.159999999999997Q1461.984 -26.752 1465.3719999999998 -25.299999999999997Q1468.7599999999998 -23.848 1471.2239999999997 -21.031999999999996Q1473.6879999999999 -18.215999999999998 1473.7759999999998 -13.552Q1473.7759999999998 -9.415999999999999 1471.4879999999998 -6.159999999999999Q1469.1999999999998 -2.904 1465.02 -1.056Q1460.84 0.7919999999999999 1455.2079999999999 0.7919999999999999Q1449.4879999999998 0.7919999999999999 1444.9559999999997 -1.276Q1440.4239999999998 -3.344 1437.7839999999997 -6.9079999999999995Q1435.1439999999998 -10.472 1434.9679999999998 -14.872Z"/></g></g></g>
+</svg></template>
+<script type="application/json" id="data">{"settings": {"whatsapp": "201044238420", "instagram": "sera_store_1", "tagline": "إكسسوارات بتكمّل إطلالتك"}, "products": [{"id": "p1", "name": "حلق دائري ذهبي", "cat": "حلق", "price": 150, "img": "", "soldOut": false, "sample": true}, {"id": "p2", "name": "حلق لؤلؤ كلاسيك", "cat": "حلق", "price": 180, "img": "", "soldOut": false, "sample": true}, {"id": "p3", "name": "سلسلة رفيعة بقلب", "cat": "سلاسل", "price": 220, "img": "", "soldOut": false, "sample": true}, {"id": "p4", "name": "سلسلة حرف اسمك", "cat": "سلاسل", "price": 260, "img": "", "soldOut": false, "sample": true}, {"id": "p5", "name": "أسورة ناعمة", "cat": "أساور", "price": 190, "img": "", "soldOut": false, "sample": true}, {"id": "p6", "name": "طقم أساور ٣ قطع", "cat": "أساور", "price": 300, "img": "", "soldOut": false, "sample": true}]}</script>
+<script id="code">
+(function(){
+var PREFIX = "<!doctype html><html><head><meta charset=utf8><meta name=viewport content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>";
+var SUFFIX = '</body></html>';
+var DATA = JSON.parse(document.getElementById('data').textContent);
+var state = JSON.parse(JSON.stringify(DATA));
+var app = document.getElementById('app');
+var exitWarned = false, canEdit = false, editing = false, dirty = 0, filter = '', api = null, statusMsg = '', publishing = false;
+document.documentElement.dir = 'rtl';
+
+function el(tag, attrs){
+  var e = document.createElement(tag);
+  var a = attrs || {};
+  Object.keys(a).forEach(function(k){
+    var v = a[k];
+    if (v === false || v == null) return;
+    if (k === 'class') e.className = v;
+    else if (k === 'text') e.textContent = v;
+    else if (k.slice(0,2) === 'on') e.addEventListener(k.slice(2), v);
+    else if (v === true) e.setAttribute(k, '');
+    else e.setAttribute(k, v);
+  });
+  for (var i = 2; i < arguments.length; i++){
+    var kids = [].concat(arguments[i]);
+    kids.forEach(function(kid){
+      if (kid == null || kid === false) return;
+      e.append(kid.nodeType ? kid : document.createTextNode(kid));
+    });
+  }
+  return e;
+}
+function fmtPrice(p){
+  if (p === '' || p == null || isNaN(Number(p))) return null;
+  return Number(p).toLocaleString('en-US');
+}
+function normNum(v){
+  var d = String(v || '').replace(/[٠-٩]/g, function(c){ return '٠١٢٣٤٥٦٧٨٩'.indexOf(c); }).replace(/\D/g, '');
+  if (d.indexOf('00') === 0) d = d.slice(2);
+  if (d.charAt(0) === '0' && d.length === 11) d = '20' + d.slice(1);
+  return d;
+}
+function waLink(p){
+  var n = state.settings.whatsapp;
+  if (!n) return null;
+  var pr = fmtPrice(p.price);
+  var msg = 'أهلاً SERA accessories، عايزة أطلب: ' + p.name + (pr ? ' (' + pr + ' ج.م)' : '');
+  return 'https://wa.me/' + n + '?text=' + encodeURIComponent(msg);
+}
+function uid(){ return 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function touch(){ dirty++; }
+function cats(){
+  var seen = [];
+  state.products.forEach(function(p){ if (p.cat && seen.indexOf(p.cat) < 0) seen.push(p.cat); });
+  return seen;
+}
+
+function hero(){
+  var tpl = document.getElementById('logo-tpl');
+  var h = el('section', {class: 'hero'});
+  h.append(tpl.content.cloneNode(true));
+  var wrap = el('div', {class: 'wrap'});
+  if (state.settings.tagline) wrap.append(el('p', {text: state.settings.tagline}));
+  wrap.append(el('button', {class: 'btn', type: 'button', text: 'شوفي المنتجات', onclick: function(){
+    var t = document.getElementById('products'); if (t) t.scrollIntoView({behavior: 'smooth'});
+  }}));
+  h.append(wrap);
+  return h;
+}
+function editbar(){
+  var pub = el('button', {class: 'btn primary small', type: 'button', disabled: !dirty || publishing, onclick: publish,
+    text: publishing ? 'جاري النشر...' : (dirty ? 'نشر التغييرات (' + dirty + ')' : 'نشر التغييرات')});
+  return el('div', {class: 'editbar'}, el('div', {class: 'wrap'},
+    pub,
+    el('button', {class: 'btn small', type: 'button', text: 'إضافة منتج', onclick: function(){ productForm(null); }}),
+    el('button', {class: 'btn small', type: 'button', text: 'الإعدادات', onclick: settingsForm}),
+    el('button', {class: 'btn small', type: 'button', text: 'خروج', onclick: function(){
+      if (dirty) { statusMsg = 'فيه تغييرات لسه ما اتنشرتش. انشريها الأول أو دوسي خروج تاني للتجاهل.'; if (!exitWarned){ exitWarned = true; render(); return; } }
+      exitWarned = false; state = JSON.parse(JSON.stringify(DATA)); dirty = 0; statusMsg = ''; editing = false; render();
+    }}),
+    el('span', {class: 'status', role: 'status', 'aria-live': 'polite', text: statusMsg})));
+}
+function card(p, idx){
+  var pr = fmtPrice(p.price);
+  var media = el('div', {class: 'media'},
+    p.img ? el('img', {src: p.img, alt: p.name, loading: 'lazy'}) : el('div', {class: 'ph', 'aria-hidden': 'true', text: 'SERA'}),
+    p.soldOut ? el('span', {class: 'tag sold', text: 'خلصت'}) : (p.sample ? el('span', {class: 'tag', text: 'تجريبي'}) : null));
+  var link = waLink(p);
+  var action;
+  if (p.soldOut) action = el('span', {class: 'btn off', text: 'خلصت'});
+  else if (link) action = el('a', {class: 'btn', href: link, target: '_blank', rel: 'noopener', text: 'اطلبي'});
+  else action = el('span', {class: 'btn off', text: canEdit ? 'ضيفي رقم الواتساب' : 'قريباً'});
+  var node = el('li', {class: 'card'}, media,
+    el('h3', {class: 'name', text: p.name}),
+    pr ? el('p', {class: 'price'}, pr + ' ', el('span', {text: 'ج.م'})) : null,
+    action);
+  if (editing){
+    var del = el('button', {class: 'btn danger small', type: 'button', text: 'مسح'});
+    del.addEventListener('click', function(){
+      if (del.dataset.sure){ state.products.splice(state.products.indexOf(p), 1); touch(); statusMsg = ''; render(); }
+      else { del.dataset.sure = '1'; del.textContent = 'تأكيد المسح؟'; setTimeout(function(){ if (del.isConnected){ delete del.dataset.sure; del.textContent = 'مسح'; } }, 3500); }
+    });
+    node.append(el('div', {class: 'tools'},
+      el('button', {class: 'btn ghost small', type: 'button', text: 'تعديل', onclick: function(){ productForm(p); }}),
+      el('button', {class: 'btn ghost small', type: 'button', text: p.soldOut ? 'رجّعيه متاح' : 'خلصت', onclick: function(){ p.soldOut = !p.soldOut; touch(); render(); }}),
+      del));
+  }
+  return node;
+}
+function products(){
+  var sec = el('section', {class: 'section wrap', id: 'products'}, el('h2', {text: 'المنتجات'}));
+  if (editing && state.products.some(function(p){ return p.sample; }))
+    sec.append(el('p', {class: 'notice', text: 'المنتجات اللي عليها «تجريبي» أمثلة بس. عدّليها أو امسحيها وضيفي منتجاتك.'}));
+  var cs = cats();
+  if (filter && cs.indexOf(filter) < 0) filter = '';
+  if (cs.length > 1){
+    var chips = el('div', {class: 'chips', role: 'group', 'aria-label': 'الأقسام'});
+    [''].concat(cs).forEach(function(c){
+      chips.append(el('button', {class: 'chip', type: 'button', 'aria-pressed': String(filter === c), text: c || 'الكل', onclick: function(){ filter = c; render(); }}));
+    });
+    sec.append(chips);
+  }
+  var list = state.products.filter(function(p){ return !filter || p.cat === filter; });
+  if (!list.length){
+    sec.append(el('div', {class: 'empty', text: canEdit ? 'مفيش منتجات لسه. دوسي «تعديل المتجر» وبعدها «إضافة منتج».' : 'المنتجات قريباً.'}));
+  } else {
+    var ul = el('ul', {class: 'grid'});
+    list.forEach(function(p, i){ ul.append(card(p, i)); });
+    sec.append(ul);
+  }
+  return sec;
+}
+function footer(){
+  var s = state.settings;
+  var w = el('div', {class: 'wrap'}, el('strong', {text: 'SERA accessories'}));
+  if (s.whatsapp) w.append(el('span', {}, 'واتساب: ', el('span', {class: 'num', text: '+' + s.whatsapp})));
+  if (s.instagram) w.append(el('span', {}, 'إنستجرام: ', el('a', {href: 'https://instagram.com/' + encodeURIComponent(s.instagram), target: '_blank', rel: 'noopener', text: '@' + s.instagram})));
+  return el('footer', {}, w);
+}
+function render(){
+  app.textContent = '';
+  var shell = el('div', {class: 'shell'});
+  if (canEdit && editing) shell.append(editbar());
+  shell.append(hero(), products(), footer());
+  app.append(shell);
+  if (canEdit && !editing){
+    app.append(el('button', {class: 'btn fab', type: 'button', text: 'تعديل المتجر', onclick: function(){ editing = true; statusMsg = ''; render(); }}));
+  }
+}
+
+/* ---------- dialogs ---------- */
+function openSheet(title, body, buttons){
+  var prevFocus = document.activeElement;
+  var ov = el('div', {class: 'overlay', role: 'dialog', 'aria-modal': 'true', 'aria-label': title, dir: 'rtl', lang: 'ar'});
+  var sheet = el('div', {class: 'sheet'}, el('h3', {text: title}), body, el('div', {class: 'row'}, buttons));
+  ov.append(sheet);
+  function close(){ ov.remove(); document.removeEventListener('keydown', onKey); if (prevFocus && prevFocus.focus) try{ prevFocus.focus(); }catch(e){} }
+  function onKey(e){ if (e.key === 'Escape') close(); }
+  document.addEventListener('keydown', onKey);
+  ov.addEventListener('click', function(e){ if (e.target === ov) close(); });
+  document.body.append(ov);
+  var first = sheet.querySelector('input'); if (first) first.focus();
+  return close;
+}
+function field(id, label, input, hint){
+  return el('div', {class: 'field'}, el('label', {for: id, text: label}), input, hint ? el('small', {text: hint}) : null);
+}
+function resizeImage(file){
+  return new Promise(function(resolve, reject){
+    var fr = new FileReader();
+    fr.onerror = function(){ reject(new Error('read')); };
+    fr.onload = function(){
+      var img = new Image();
+      img.onerror = function(){ reject(new Error('decode')); };
+      img.onload = function(){
+        var max = 900, r = Math.min(1, max / Math.max(img.width, img.height));
+        var c = document.createElement('canvas');
+        c.width = Math.round(img.width * r); c.height = Math.round(img.height * r);
+        var ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        resolve(c.toDataURL('image/jpeg', 0.82));
+      };
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+function productForm(p){
+  var isNew = !p;
+  var draft = p ? {name: p.name, price: p.price, cat: p.cat, img: p.img, soldOut: p.soldOut} : {name: '', price: '', cat: filter || '', img: '', soldOut: false};
+  var err = el('p', {class: 'err', role: 'alert'});
+  var name = el('input', {type: 'text', id: 'f-name', value: draft.name, autocomplete: 'off'});
+  var price = el('input', {type: 'number', id: 'f-price', inputmode: 'numeric', min: '0', value: draft.price});
+  var cat = el('input', {type: 'text', id: 'f-cat', value: draft.cat, list: 'f-cats', autocomplete: 'off'});
+  var dl = el('datalist', {id: 'f-cats'}); cats().forEach(function(c){ dl.append(el('option', {value: c})); });
+  var file = el('input', {type: 'file', id: 'f-img', accept: 'image/*'});
+  var prevWrap = el('div', {});
+  function showPrev(){
+    prevWrap.textContent = '';
+    if (draft.img){
+      prevWrap.append(el('img', {class: 'preview', src: draft.img, alt: 'صورة المنتج'}),
+        el('button', {class: 'btn ghost small', type: 'button', text: 'شيلي الصورة', onclick: function(){ draft.img = ''; file.value = ''; showPrev(); }}));
+    }
+  }
+  showPrev();
+  file.addEventListener('change', function(){
+    var f = file.files && file.files[0]; if (!f) return;
+    err.textContent = '';
+    resizeImage(f).then(function(d){ draft.img = d; showPrev(); }).catch(function(){ err.textContent = 'مقدرتش أقرأ الصورة دي. جرّبي صورة تانية.'; });
+  });
+  var sold = el('input', {type: 'checkbox', id: 'f-sold'}); sold.checked = !!draft.soldOut;
+  var body = el('div', {},
+    field('f-name', 'اسم المنتج', name),
+    field('f-price', 'السعر بالجنيه', price, 'سيبيه فاضي لو مش عايزة تكتبي سعر.'),
+    field('f-cat', 'القسم', [cat, dl], 'زي: حلق، سلاسل، أساور. الأقسام بتظهر كأزرار فلترة فوق المنتجات.'),
+    field('f-img', 'الصورة', [file, prevWrap]),
+    el('div', {class: 'check'}, sold, el('label', {for: 'f-sold', text: 'خلصت من المخزون'})),
+    err);
+  var close;
+  var save = el('button', {class: 'btn', type: 'button', text: isNew ? 'إضافة' : 'حفظ', onclick: function(){
+    var n = name.value.trim();
+    if (!n){ err.textContent = 'اكتبي اسم المنتج الأول.'; name.focus(); return; }
+    var data = {name: n, price: price.value === '' ? '' : Math.max(0, Number(price.value)), cat: cat.value.trim(), img: draft.img, soldOut: sold.checked, sample: false};
+    if (isNew){ data.id = uid(); state.products.unshift(data); }
+    else Object.assign(p, data);
+    touch(); statusMsg = ''; close(); render();
+  }});
+  var cancel = el('button', {class: 'btn ghost', type: 'button', text: 'إلغاء', onclick: function(){ close(); }});
+  close = openSheet(isNew ? 'منتج جديد' : 'تعديل المنتج', body, [save, cancel]);
+}
+function settingsForm(){
+  var s = state.settings;
+  var err = el('p', {class: 'err', role: 'alert'});
+  var wa = el('input', {type: 'tel', id: 's-wa', inputmode: 'tel', value: s.whatsapp ? '+' + s.whatsapp : '', dir: 'ltr', autocomplete: 'off'});
+  var tg = el('input', {type: 'text', id: 's-tag', value: s.tagline, autocomplete: 'off'});
+  var ig = el('input', {type: 'text', id: 's-ig', value: s.instagram, dir: 'ltr', autocomplete: 'off'});
+  var body = el('div', {},
+    field('s-wa', 'رقم الواتساب للطلبات', wa, 'اكتبيه بأي شكل، زي 01012345678. الأزرار بتفتح محادثة على الرقم ده.'),
+    field('s-tag', 'جملة تحت اللوجو', tg),
+    field('s-ig', 'حساب إنستجرام (اختياري)', ig, 'اسم الحساب بس من غير @.'),
+    err);
+  var close;
+  var save = el('button', {class: 'btn', type: 'button', text: 'حفظ', onclick: function(){
+    var n = normNum(wa.value);
+    if (wa.value.trim() && n.length < 10){ err.textContent = 'الرقم قصير. اكتبيه كامل.'; wa.focus(); return; }
+    s.whatsapp = n; s.tagline = tg.value.trim(); s.instagram = ig.value.trim().replace(/^@/, '');
+    touch(); statusMsg = ''; close(); render();
+  }});
+  close = openSheet('إعدادات المتجر', body, [save, el('button', {class: 'btn ghost', type: 'button', text: 'إلغاء', onclick: function(){ close(); }})]);
+}
+
+/* ---------- publish ---------- */
+function buildDoc(){
+  var json = JSON.stringify(state).split('<').join('\\u003c').split(String.fromCharCode(8232)).join('\\u2028').split(String.fromCharCode(8233)).join('\\u2029');
+  var code = document.getElementById('code').textContent;
+  var css = document.getElementById('css').textContent;
+  var close = '<' + '/script>';
+  return PREFIX +
+    '<title>SERA accessories</title>' +
+    document.getElementById('fonts').outerHTML +
+    '<style id="css">' + css + '</style>' +
+    '<div id="app" dir="rtl" lang="ar"></div>' +
+    document.getElementById('logo-tpl').outerHTML +
+    '<script type="application/json" id="data">' + json + close +
+    '<script id="code">' + code + close +
+    SUFFIX;
+}
+function publish(){
+  if (!api || publishing || !dirty) return;
+  var html = buildDoc();
+  if (html.length > 14000000){ statusMsg = 'الصور كتير وحجم الصفحة كبير. امسحي كام صورة أو صغّريها.'; render(); return; }
+  publishing = true; statusMsg = 'بينشر...'; render();
+  api.publish(html).then(function(){
+    dirty = 0; statusMsg = 'اتنشر. الصفحة بتتحدّث.';
+  }).catch(function(e){
+    publishing = false;
+    var c = e && e.code;
+    if (c === 'conflict') statusMsg = 'فيه نسخة أحدث اتنشرت. الصفحة هتتحمّل من جديد، وبعدها كرري التعديل.';
+    else if (c === 'not_writer' || c === 'not_granted' || c === 'consent_required' || c === 'not_declared' || c === 'capability_disabled'){ canEdit = false; editing = false; statusMsg = ''; }
+    else if (c === 'too_large') statusMsg = 'الصفحة كبيرة أوي. صغّري الصور أو امسحي منتجات.';
+    else if (c === 'rate_limited') statusMsg = 'استني شوية وجرّبي تاني.';
+    else statusMsg = 'النشر ماتمّش. جرّبي تاني كمان شوية.';
+    render();
+  });
+}
+
+render();
+(async function(){
+  try{
+    var c = window.claude;
+    if (!c || !c.use) return;
+    var u = await c.use('user');
+    var a = await c.use('artifact');
+    api = a;
+    if (u && a) canEdit = await u.canEdit();
+  }catch(e){}
+  if (canEdit) render();
+})();
+})();
+</script>
+
+</body></html>
